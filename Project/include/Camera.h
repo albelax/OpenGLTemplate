@@ -1,5 +1,4 @@
-#ifndef CAMERA_H
-#define CAMERA_H
+#pragma once
 
 ///**********************************PLEASE NOTICE*****************************************///
 ///****************************************************************************************///
@@ -18,8 +17,6 @@
 // Used only for sin() and cos() functions
 #include <math.h>
 
-// Needed for SDL output
-
 // Needed for matrix operations
 #include <glm.hpp>
 
@@ -28,6 +25,7 @@
 #include <mat4x4.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtx/string_cast.hpp>
+#include <QEvent>
 
 /**
  * @brief The Camera class
@@ -49,9 +47,6 @@ public:
 
     /// Mouse movement handler to look around
     virtual void handleMouseMove(double /*mouseX*/, double /*mouseY*/) {}
-
-    /// Mouse click handler
-    virtual void handleMouseClick(double /*mouseX*/, double /*mouseY*/, int /*glfw button*/, int /*glfw action*/, int /*glfw mods*/) {}
 
     /// Functions to retrieve matrices from the camera
 		const glm::mat4 &viewMatrix() { return m_V; }
@@ -90,7 +85,5 @@ protected:
     double toRads(const double &degs) const {
         return degs * TO_RADS;
     }
-
 };
 
-#endif // CAMERA_H

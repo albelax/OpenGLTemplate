@@ -4,20 +4,15 @@
 #
 #-------------------------------------------------
 
-QT += core gui
-CONFIG += console c++11
+CONFIG += console c++1z
+CONFIG -= app_bundle
+
+QT += opengl \
+			core \
+			gui
 
 TEMPLATE = app
 TARGET = Project
-
-QT += opengl \
-      core \
-      gui
-
-CONFIG += console \
-          c++11
-
-CONFIG -= app_bundle
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -32,7 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 INCLUDEPATH += $$PWD/include \
                $$PWD/ui \
-               $$PWD/../glm \
+							 $$PWD/../glm \
                $$PWD/shaders
 
 HEADERS += include/MainWindow.h \
@@ -41,7 +36,7 @@ HEADERS += include/MainWindow.h \
            include/TrackballCamera.h \
            include/Shader.h \
            include/Mesh.h \
-           include/Scene.h \
+					 include/Scene.h \
            include/Buffer.h
 
 SOURCES += src/main.cpp \
@@ -51,7 +46,7 @@ SOURCES += src/main.cpp \
            src/TrackballCamera.cpp \
            src/Shader.cpp \
            src/Mesh.cpp \
-           src/Scene.cpp \
+					 src/Scene.cpp \
            src/Buffer.cpp
 
 OTHER_FILES += shaders/* \
@@ -66,5 +61,3 @@ UI_DIR = ui
 
 linux:LIBS += -lGL -lGLU -lGLEW
 
-
-#DISTFILES +=

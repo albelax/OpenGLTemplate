@@ -1,7 +1,5 @@
-#ifndef SCENE_H
-#define SCENE_H
+#pragma once
 
-//#include <QEvent>
 #include <QResizeEvent>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
@@ -62,10 +60,4 @@ private:
   GLuint m_vbo;
   //----------------------------------------------------------------------------------------------------------------------
   GLuint m_nbo;
-  //----------------------------------------------------------------------------------------------------------------------
-  GLint m_vertexPositionAddress;
-  //----------------------------------------------------------------------------------------------------------------------
-  GLint m_vertexNormalAddress;
 };
-
-#endif // SCENE_H

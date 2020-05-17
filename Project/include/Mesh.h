@@ -1,5 +1,4 @@
-#ifndef MESH_H
-#define MESH_H
+#pragma once
 
 ///**********************************PLEASE NOTICE*****************************************///
 ///****************************************************************************************///
@@ -95,9 +94,9 @@ public:
 
 	std::vector<float> getUVsCopy() const { return m_uvs; }
 
-	const float &getVertexData() const { return m_vertices[0]; }
-	const float &getNormalsData() const { return m_normals[0]; }
-	const float &getUVsData() const { return m_uvs[0]; }
+  const std::vector<float> &getVertexData() const { return m_vertices; }
+  const std::vector<float> &getNormalsData() const { return m_normals; }
+  const std::vector<float> &getUVsData() const { return m_uvs; }
 
 	/// \brief getAmountVertexData returns amount of vertices of contained in this mesh, they are stored as floats,
 	/// which implies they will have to be divided by 3 to get the actual number of vertices
@@ -119,5 +118,3 @@ public:
 	/// this overload lets the user export his own data without having to make a mesh object
 	static void write(const std::vector<float> &_vertices, const std::vector<float> &_normals, std::string _destination);
 };
-
-#endif // MESH_H

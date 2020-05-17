@@ -1,5 +1,4 @@
-#ifndef TRACKBALLCAMERA_H
-#define TRACKBALLCAMERA_H
+# pragma once
 
 ///**********************************PLEASE NOTICE*****************************************///
 ///****************************************************************************************///
@@ -14,7 +13,6 @@
 
 #include "Camera.h"
 #include <gtc/quaternion.hpp>
-#include <QEvent>
 #include <QResizeEvent>
 #include <QOpenGLWidget>
 
@@ -24,11 +22,11 @@
 class TrackballCamera : public Camera
 {
     typedef enum
-{
+  {
         TRACKBALL_PASSIVE,
         TRACKBALL_ROTATING,
         TRACKBALL_ZOOMING
-    } TrackballState;
+  } TrackballState;
 public:
     /// Construct our empty trackball (no destructor needed as we don't allocate dynamic memory)
     TrackballCamera();
@@ -40,7 +38,7 @@ public:
     virtual void handleMouseMove(double /*mouseX*/, double /*mouseY*/);
 
     /// Mouse click handler
-    virtual void handleMouseClick(double /*mouseX*/, double /*mouseY*/, int /*button*/, QMouseEvent * /*action*/, int /*mods*/);
+    virtual void handleMouseClick(QMouseEvent * /*action*/);
 
     /// Set the direction you're looking
     void setTarget(const double& x, const double& y, const double& z) {m_target = glm::dvec3(x,y,z);}
@@ -49,9 +47,6 @@ public:
 		void setEye(const double& x, const double& y, const double& z)
 		{
 			m_eye = glm::dvec3(x,y,z);
-
-//			m_V = glm::lookAt(glm::vec3(m_eye), glm::vec3(m_target), glm::vec3(0.0f,1.0f,0.0f));
-
 		}
 
     /// Set the zoom by scaling the eye position
@@ -62,13 +57,12 @@ public:
 
 		glm::vec3 getEye() const { return m_eye; }
 		glm::mat4 getM_V() const { return m_V; }
-//		void setM_V( glm::mat4 _m_v ) { m_V = _m_v; }
 private:
     /// Rotate based on the current mouse position and the mouse click position
     void mouseRotate(double /*xpos*/, double /*ypos*/);
 
     /// Zoom based on the current mouse position and the position of the mouse click
-    void mouseZoom(double /*xpos*/, double /*ypos*/);
+    void mouseZoom(double /*ypos*/);
 
     /// Keep track of our current trackball state
     TrackballState m_state;
@@ -85,5 +79,3 @@ private:
     /// Keep track of whether the matrices need to be rebuilt
     bool m_dirty;
 };
-
-#endif // TRACKBALLCAMERA_H

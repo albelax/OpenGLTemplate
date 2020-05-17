@@ -1,30 +1,27 @@
-#ifndef BUFFER_H
-#define BUFFER_H
-
-#ifdef __APPLE__
-#include <OpenGL/gl3.h>
-#else
-#include <GL/glew.h>
-#define LINUX
-#endif
-#include <iostream>
+#pragma once
 #include <vector>
+
+class Shader;
 
 class Buffer
 {
 public:
-	enum class operation {r = 'r', u = 'u', l = 'l', d = 'd'};
 	enum BufferType { VERTEX, NORMAL, UV };
-  Buffer(); // makes sure that the compiler doesn't generate a default constructor
+  Buffer();
 	Buffer(const int _size, int _sizeOfData);
   int append(const void * _address, int size, BufferType _type);
-	void clear(const int _size, int _sizeOfData);
+  //void clear(const int _size, int _sizeOfData);
   void reset(const int _size);
-private:
-	GLuint m_vao;
-	GLuint m_vertexBuffer;
-	GLuint m_normalBuffer;
-	GLuint m_uvBuffer;
+  void Load(const Shader & shader, const std::vector<float> & vertices, const std::vector<float> & normals);
+  bool LoadVertices(const std::vector<float> & vertices);
+  bool LoadNormals(const std::vector<float> & normals);
+
+protected:
+  void init();
+  unsigned int m_vao;
+  unsigned int m_vertexBuffer;
+  unsigned int m_normalBuffer;
+  unsigned int m_uvBuffer;
 	int m_vertex_index;
 	int m_normal_index;
 	int m_uv_index;
@@ -32,4 +29,3 @@ private:
 	std::vector<int> m_elements;
 };
 
-#endif // BUFFER_H
